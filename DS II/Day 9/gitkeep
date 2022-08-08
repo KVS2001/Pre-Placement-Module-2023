@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) 
+    {
+        unordered_set<string> HT;
+        unordered_set<string> Res;
+        
+        for(int i = 0; i <= (int)s.size() - 10; ++i)
+        {
+            string Curr = s.substr(i,10);
+            
+            if(HT.find(Curr) != HT.end())
+            {
+                Res.insert(Curr);
+            }
+            
+            HT.insert(Curr);
+        }
+        
+        return vector<string> (Res.begin(),Res.end());
+    }
+};
