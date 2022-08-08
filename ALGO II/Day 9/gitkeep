@@ -1,0 +1,23 @@
+class Solution {
+public:
+    std::vector<std::vector<int>> result = {};
+    std::vector<int> curNums;
+
+    std::vector<std::vector<int>> subsets(std::vector<int>& nums) {
+        std::vector<int> start = {};
+        curNums = nums;
+        backtrack(0, start);
+        return result;
+    }
+
+    void backtrack(int ith, std::vector<int> cur){
+        if (ith >= curNums.size()){
+            result.push_back(cur);
+            return;
+        }
+        cur.push_back(curNums[ith]);
+        backtrack(ith + 1, cur);
+        cur.pop_back();
+        backtrack(ith + 1, cur);
+    }
+};
