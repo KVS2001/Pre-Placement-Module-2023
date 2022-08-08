@@ -1,0 +1,36 @@
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        int lenA = 0, lenB = 0;
+        ListNode* tempA = headA;
+        ListNode* tempB = headB;
+        while(tempA){
+            lenA++;
+            tempA = tempA->next;
+        }
+        tempA = headA;
+        while(tempB){
+            lenB++;
+            tempB = tempB->next;
+        }
+        tempB = headB;
+        int diff = abs(lenB-lenA);
+        while(diff > 0){
+            if(lenA > lenB) tempA = tempA->next;
+            else tempB = tempB->next;
+            diff--;
+        }
+        ListNode* ans = NULL;
+        while(tempA){
+            if(tempA == tempB){
+                ans = tempA;
+                break;
+            }
+            tempA = tempA->next;
+            tempB = tempB->next;
+        }
+        return ans;
+    }
+};
